@@ -1,3 +1,4 @@
+#coding=utf-8
 #By @Kevin Xu
 #kevin28520@gmail.com
 #Youtube: https://www.youtube.com/channel/UCVCSn4qQXTDAtGWpWAe4Plw
@@ -47,10 +48,11 @@ learning_rate = 0.0001 # with current parameters, it is suggested to use learnin
 def run_training():
     
     # you need to change the directories to yours.
-    train_dir = '/home/kevin/tensorflow/cats_vs_dogs/data/train/'
-    logs_train_dir = '/home/kevin/tensorflow/cats_vs_dogs/logs/train/'
+    train_dir = '/home/klm/ws_data/tensorflow/cats_vs_dogs/train/'
+    logs_train_dir = '/home/klm/ws_data/tensorflow/cats_vs_dogs/logs/train/'
     
     train, train_label = input_data.get_files(train_dir)
+
     
     train_batch, train_label_batch = input_data.get_batch(train,
                                                           train_label,
@@ -93,9 +95,12 @@ def run_training():
         coord.request_stop()
         
     coord.join(threads)
+    print ("train done...")
     sess.close()
     
-
+if __name__ == '__main__':
+    run_training()
+    pass
 #%% Evaluate one image
 # when training, comment the following codes.
 

@@ -1,3 +1,4 @@
+#coding=utf-8
 #By @Kevin Xu
 #kevin28520@gmail.com
 
@@ -40,7 +41,7 @@ import os
 #%%
 
 # you need to change this to your data directory
-train_dir = '/home/kevin/tensorflow/cats_vs_dogs/data/train/'
+train_dir = '/home/klm/ws_data/tensorflow/cats_vs_dogs/train/'
 
 def get_files(file_dir):
     '''
@@ -54,7 +55,9 @@ def get_files(file_dir):
     dogs = []
     label_dogs = []
     for file in os.listdir(file_dir):
-        name = file.split(sep='.')
+        #print (file)
+        #name = file.split(sep='.')
+        name = file.split('.')
         if name[0]=='cat':
             cats.append(file_dir + file)
             label_cats.append(0)
@@ -74,11 +77,7 @@ def get_files(file_dir):
     label_list = list(temp[:, 1])
     label_list = [int(i) for i in label_list]
     
-    
     return image_list, label_list
-
-
-#%%
 
 def get_batch(image, label, image_W, image_H, batch_size, capacity):
     '''
@@ -99,6 +98,7 @@ def get_batch(image, label, image_W, image_H, batch_size, capacity):
 
     # make an input queue
     input_queue = tf.train.slice_input_producer([image, label])
+    print type(input_queue), len(input_queue)
     
     label = input_queue[1]
     image_contents = tf.read_file(input_queue[0])
